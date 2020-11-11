@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 });
 
 // Connect to database
-mongoose.connect("mongodb+srv://bhavnatahelyani:bhavna288@learning-node.36qjc.azure.mongodb.net/divya-traders-account?retryWrites=true&w=majority", {
+mongoose.connect(process.env.DB_Connection, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, () => {
