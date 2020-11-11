@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv/config');
 
+const port = process.env.PORT || 3000;
+
 const app = express();
 
 // Middlewares
@@ -29,6 +31,6 @@ mongoose.connect(process.env.DB_Connection, {
 });
 
 // Listening to the server
-app.listen(process.env.PORT, () => {
-    console.log("Server listening on port", process.env.PORT);
+app.listen(port, () => {
+    console.log("Server listening on port", port);
 });
