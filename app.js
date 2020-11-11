@@ -13,13 +13,13 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Import routes
-const postsRoute = require('./routes/products');
+const productsRoute = require('./routes/products');
 
-app.use('/posts', postsRoute);
+app.use('/products', productsRoute);
 
 // Routes
 app.get('/', (req, res) => {
-    res.send("We are on home");
+    res.send("We are on home page");
 });
 
 // Connect to database
