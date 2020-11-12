@@ -6,10 +6,6 @@ const ProductSchema = mongoose.Schema({
         required: true
     },
     description: String,
-    rate: [{
-        unit: String,
-        price: Number
-    }],
     date: {
         type: Date,
         default: Date.now
