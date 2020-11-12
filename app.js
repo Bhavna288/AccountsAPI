@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv/config');
 
@@ -10,7 +9,7 @@ const app = express();
 
 // Middlewares
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Import routes
 const productsRoute = require('./routes/products');
