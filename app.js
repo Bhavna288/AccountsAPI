@@ -12,6 +12,9 @@ const productsRoute = require('./routes/products');
 const salesRoute = require('./routes/sales');
 const clientsRoute = require('./routes/client');
 
+// Github Repository: https://github.com/Bhavna288/AccountsAPI.git
+// Kudu Repository for continuous deployment on azure: https://divyatradersaccounts.scm.azurewebsites.net:443/divyatradersaccounts.git
+
 // Middlewares
 app.use(cors());
 app.use(express.json());
