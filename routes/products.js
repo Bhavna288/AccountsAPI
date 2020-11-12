@@ -10,7 +10,7 @@ const Joi = require('@hapi/joi');
 const schema = Joi.object({
     title: Joi.string().min(3).required(),
     description: Joi.string(),
-    price: Joi.number().required().greater(0)
+    rate: Joi.number().required().greater(0)
 });
 
 // Gets back all the products
@@ -56,7 +56,7 @@ router.post('/', async (req, res) => {
     const product = new Product({
         title: req.body.title,
         description: req.body.description,
-        price: req.body.price
+        rate: req.body.rate
     });
 
     try {

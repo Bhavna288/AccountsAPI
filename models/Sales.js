@@ -13,12 +13,9 @@ const SalesSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Products",
     },
-    description: String,
     quantity: Number,
-    unit: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Units"
-    },
+    unit: String,
+    description: String,
     totalPrice: Number
 });
 
