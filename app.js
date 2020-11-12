@@ -16,7 +16,7 @@ const clientsRoute = require('./routes/client');
 app.use(cors());
 app.use(express.json());
 
-// Routes middlewares
+// Routes Middlewares
 app.use('/products', productsRoute);
 app.use('/sales', salesRoute);
 app.use('/clients', clientsRoute);
