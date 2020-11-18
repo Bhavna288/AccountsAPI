@@ -10,7 +10,7 @@ const ItemSchema = mongoose.Schema({
         type: String,
         default: () => {
             var date = new Date();
-            return date.toString();
+            return date.toISOString();
         }
     }
 });
