@@ -2,12 +2,16 @@ const express = require('express');
 const router = express.Router();
 // const bcrypt = require('bcryptjs');
 const Sales = require('../models/Sales');
+const Client = require('../models/Client');
 const jwt = require('jsonwebtoken');
 
 // Gets back all the saless
 router.get('/', async (req, res) => {
     try {
         const sales = await Sales.find();
+        await sales.populate("clients")
+            .populate("products")
+            .execPopulate();
         res.json(sales);
     } catch (error) {
         res.status(400).send(error);
@@ -29,7 +33,7 @@ router.post('/', async (req, res) => {
 
     const sales = new Sales({
         client: req.body.client,
-        product: req.body.product,
+        item: req.body.item,
         quantity: req.body.quantity,
         unit: req.body.unit,
         description: req.body.description,
@@ -64,7 +68,7 @@ router.patch('/:salesId', async (req, res) => {
             {
                 $set: {
                     client: req.body.client,
-                    product: req.body.product,
+                    item: req.body.item,
                     quantity: req.body.quantity,
                     unit: req.body.unit,
                     description: req.body.description,

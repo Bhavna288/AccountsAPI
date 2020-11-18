@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // const bcrypt = require('bcryptjs');
-const Product = require('../models/Product');
+const Item = require('../models/Item');
 const jwt = require('jsonwebtoken');
 
 // Validation
@@ -12,37 +12,37 @@ const schema = Joi.object({
     description: Joi.string(),
 });
 
-// Gets back all the products
+// Gets back all the items
 router.get('/', async (req, res) => {
     try {
-        const products = await Product.find();
-        res.json(products);
+        const items = await Item.find();
+        res.json(items);
     } catch (error) {
         res.status(400).send(error);
     }
 });
 
-// Gets a specific product
-router.get('/:productId', async (req, res) => {
+// Gets a specific item
+router.get('/:itemId', async (req, res) => {
     try {
-        const product = await Product.findById(req.params.productId);
-        res.json(product);
+        const item = await Item.findById(req.params.itemId);
+        res.json(item);
     } catch (error) {
         res.status(400).send(error);
     }
 });
 
-// Submits or creates a product
+// Submits or creates a item
 router.post('/', async (req, res) => {
 
     const { error } = schema.validate(req.body);
 
     if (error) return res.status(400).send(error.details[0].message);
 
-    // Checking if the product is already in the database
-    const titleExist = await Product.findOne({ title: req.body.title });
+    // Checking if the item is already in the database
+    const titleExist = await Item.findOne({ title: req.body.title });
     console.log("titleExist");
-    if (titleExist) return res.status(400).send("Product already exists.");
+    if (titleExist) return res.status(400).send("item already exists.");
 
     // Hash the password
     // const salt = await bcrypt.genSalt(10);
@@ -52,39 +52,39 @@ router.post('/', async (req, res) => {
     // const validPass = await bcrypt.compare(req.body.password, titleExist.password);
     // if (!validPass) return res.status(400).send("Incorrect password.");
 
-    const product = new Product({
+    const item = new Item({
         title: req.body.title,
         description: req.body.description
     });
 
     try {
-        const savedProduct = await product.save()
-        // res.json(savedProduct);
-        res.json({ productId: product._id });
+        const savedItem = await item.save()
+        // res.json(savedItem);
+        res.json({ itemId: item._id });
     } catch (err) {
         res.status(400).send(err);
     }
 
 });
 
-// Delete a product
-router.delete('/:productId', async (req, res) => {
+// Delete an item
+router.delete('/:itemId', async (req, res) => {
     try {
-        const removedProduct = await Product.remove({ _id: req.params.productId });
-        res.json(removedProduct);
+        const removedItem = await Item.remove({ _id: req.params.itemId });
+        res.json(removedItem);
     } catch (error) {
         res.status(400).send(error);
     }
 })
 
-// Update a product
-router.patch('/:productId', async (req, res) => {
+// Update an item
+router.patch('/:itemId', async (req, res) => {
     try {
-        const updatedProduct = await Product.updateOne(
-            { _id: req.params.productId },
+        const updatedItem = await Item.updateOne(
+            { _id: req.params.itemId },
             { $set: { title: req.body.title, description: req.body.description } }
         );
-        res.json(updatedProduct);
+        res.json(updatedItem);
     } catch (error) {
         res.status(400).send(error);
     }

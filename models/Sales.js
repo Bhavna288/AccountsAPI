@@ -9,9 +9,9 @@ const SalesSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Client",
     },
-    product: {
+    item: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Products",
+        ref: "Items",
     },
     quantity: Number,
     unit: String,
