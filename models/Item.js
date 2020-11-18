@@ -7,8 +7,11 @@ const ItemSchema = mongoose.Schema({
     },
     description: String,
     date: {
-        type: Date,
-        default: Date.now
+        type: String,
+        default: () => {
+            var date = new Date();
+            return date.toString();
+        }
     }
 });
 

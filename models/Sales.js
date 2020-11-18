@@ -2,8 +2,11 @@ const mongoose = require('mongoose');
 
 const SalesSchema = mongoose.Schema({
     date: {
-        type: Date,
-        default: Date.now
+        type: String,
+        default: () => {
+            var date = new Date();
+            return date.toString();
+        }
     },
     client: {
         type: mongoose.Schema.Types.ObjectId,

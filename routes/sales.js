@@ -41,9 +41,12 @@ router.post('/', async (req, res) => {
         totalPrice: req.body.totalPrice
     });
 
+    var date = new Date();
+    console.log(date.toString());
+
     try {
         const savedSale = await sales.save()
-        // res.json(savedsales);
+        // res.json(savedSale);
         res.json({ salesId: sales._id });
     } catch (err) {
         res.status(400).send(err);
