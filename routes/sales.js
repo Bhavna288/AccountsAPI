@@ -2,18 +2,17 @@ const express = require('express');
 const router = express.Router();
 // const bcrypt = require('bcryptjs');
 const Sales = require('../models/Sales');
-const Client = require('../models/Client');
 const jwt = require('jsonwebtoken');
 
 // Gets back all the saless
 router.get('/', async (req, res) => {
     try {
-        const sales = await Sales.find();
-        await sales.populate("clients")
-            .populate("products")
-            .execPopulate();
+        const sales = await Sales.find()
+            .populate("client")
+            .populate("item");
         res.json(sales);
     } catch (error) {
+        console.log(error);
         res.status(400).send(error);
     }
 });
@@ -21,7 +20,9 @@ router.get('/', async (req, res) => {
 // Gets a specific sales
 router.get('/:salesId', async (req, res) => {
     try {
-        const sales = await Sales.findById(req.params.salesId);
+        const sales = await Sales.findById(req.params.salesId)
+            .populate("client")
+            .populate("item");
         res.json(sales);
     } catch (error) {
         res.status(400).send(error);
