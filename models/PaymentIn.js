@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const SalesSchema = mongoose.Schema({
+const PaymentSchema = mongoose.Schema({
+    receiptNo: Number,
     date: {
         type: String,
         default: () => {
@@ -12,15 +13,13 @@ const SalesSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Client",
     },
-    item: {
+    sale: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Items",
+        ref: "Sales",
     },
-    quantity: Number,
-    unit: String,
-    description: String,
-    totalPrice: Number,
-    remainingBalance: Number
+    paymentType: String,
+    amount: Number,
+    description: String
 });
 
-module.exports = mongoose.model('Sales', SalesSchema);
+module.exports = mongoose.model('PaymentIn', PaymentSchema);

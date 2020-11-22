@@ -38,7 +38,9 @@ router.post('/', async (req, res) => {
         quantity: req.body.quantity,
         unit: req.body.unit,
         description: req.body.description,
-        totalPrice: req.body.totalPrice
+        totalPrice: req.body.totalPrice,
+        date: req.body.date,
+        remainingBalance: req.body.remainingBalance
     });
 
     var date = new Date();
@@ -76,7 +78,9 @@ router.patch('/:salesId', async (req, res) => {
                     quantity: req.body.quantity,
                     unit: req.body.unit,
                     description: req.body.description,
-                    totalPrice: req.body.totalPrice
+                    totalPrice: req.body.totalPrice,
+                    date: req.body.date,
+                    remainingBalance: req.body.remainingBalance
                 }
             }
         );

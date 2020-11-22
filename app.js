@@ -11,6 +11,7 @@ const app = express();
 const itemsRoute = require('./routes/items');
 const salesRoute = require('./routes/sales');
 const clientsRoute = require('./routes/client');
+const paymentRoute = require('./routes/payment');
 
 // Github Repository: https://github.com/Bhavna288/AccountsAPI.git
 // Kudu Repository for continuous deployment on azure: https://divyatradersaccounts.scm.azurewebsites.net:443/divyatradersaccounts.git
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use('/items', itemsRoute);
 app.use('/sales', salesRoute);
 app.use('/clients', clientsRoute);
+app.use('/payments', paymentRoute);
 
 // Routes
 app.get('/', (req, res) => {
