@@ -29,6 +29,18 @@ router.get('/:paymentId', async (req, res) => {
     }
 });
 
+// Gets all payments by a specific client
+router.get('/:clientId', async (req, res) => {
+    try {
+        const payment = await PaymentIn.find({ "client": req.params.clientId })
+            .populate("client")
+            .populate("sales");
+        res.json(payment);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
+
 // Submits or creates a paymentIn
 router.post('/', async (req, res) => {
 
