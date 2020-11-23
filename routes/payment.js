@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
 // const bcrypt = require('bcryptjs');
-const PaymentIn = require('../models/PaymentIn');
+const Payment = require('../models/PaymentIn');
+const Client = require('../models/Client');
 const jwt = require('jsonwebtoken');
+const Mongoose = require('mongoose');
 
 // Gets back all the payment details
 router.get('/', async (req, res) => {
     try {
-        const payment = await PaymentIn.find()
+        const payment = await Payment.find()
             .populate("client")
-            .populate("sales");
+            .populate("sale");
         res.json(payment);
     } catch (error) {
         console.log(error);
@@ -20,9 +22,9 @@ router.get('/', async (req, res) => {
 // Gets a specific payment
 router.get('/:paymentId', async (req, res) => {
     try {
-        const payment = await PaymentIn.findById(req.params.paymentId)
+        const payment = await Payment.findById(req.params.paymentId)
             .populate("client")
-            .populate("sales");
+            .populate("sale");
         res.json(payment);
     } catch (error) {
         res.status(400).send(error);
@@ -30,21 +32,25 @@ router.get('/:paymentId', async (req, res) => {
 });
 
 // Gets all payments by a specific client
-router.get('/:clientId', async (req, res) => {
+router.get('/client/:clientId', async (req, res) => {
     try {
-        const payment = await PaymentIn.find({ "client": req.params.clientId })
+        const client = await Client.findById(req.params.clientId);
+
+        // console.log(Mongoose.Schema.Types.ObjectId(client._id))
+        const payment = await Payment.find({ "client": req.params.clientId })
             .populate("client")
-            .populate("sales");
+            .populate("sale");
+
         res.json(payment);
     } catch (error) {
         res.status(400).send(error);
     }
 });
 
-// Submits or creates a paymentIn
+// Submits or creates a Payment
 router.post('/', async (req, res) => {
 
-    const payment = new PaymentIn({
+    const payment = new Payment({
         client: req.body.client,
         sale: req.body.sale,
         receiptNo: req.body.receiptNo,
@@ -55,8 +61,8 @@ router.post('/', async (req, res) => {
     });
 
     try {
-        const savedPayment = await PaymentIn.save()
-        // res.json(savedSale);
+        const savedPayment = await payment.save()
+        // res.json(savedPayment);
         res.json({ paymentId: payment._id });
     } catch (err) {
         res.status(400).send(err);
@@ -67,7 +73,7 @@ router.post('/', async (req, res) => {
 // Delete a payment
 router.delete('/:paymentId', async (req, res) => {
     try {
-        const removedPayment = await PaymentIn.remove({ _id: req.params.paymentId });
+        const removedPayment = await Payment.remove({ _id: req.params.paymentId });
         res.json(removedPayment);
     } catch (error) {
         res.status(400).send(error);
@@ -77,7 +83,7 @@ router.delete('/:paymentId', async (req, res) => {
 // Update a payment
 router.patch('/:paymentId', async (req, res) => {
     try {
-        const updatedPayment = await PaymentIn.updateOne(
+        const updatedPayment = await Payment.updateOne(
             { _id: req.params.paymentId },
             {
                 $set: {
