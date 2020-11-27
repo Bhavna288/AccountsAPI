@@ -29,6 +29,19 @@ router.get('/:salesId', async (req, res) => {
     }
 });
 
+// Gets all sales to a specific client
+router.get('/client/:clientId', async (req, res) => {
+    try {
+        const sales = await Sales.find({ "client": req.params.clientId })
+            .populate("client")
+            .populate("item");
+
+        res.json(sales);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
+
 // Submits or creates a sale
 router.post('/', async (req, res) => {
 

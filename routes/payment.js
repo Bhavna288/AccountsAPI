@@ -34,9 +34,6 @@ router.get('/:paymentId', async (req, res) => {
 // Gets all payments by a specific client
 router.get('/client/:clientId', async (req, res) => {
     try {
-        const client = await Client.findById(req.params.clientId);
-
-        // console.log(Mongoose.Schema.Types.ObjectId(client._id))
         const payment = await Payment.find({ "client": req.params.clientId })
             .populate("client")
             .populate("sale");
