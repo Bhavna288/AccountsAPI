@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const PaymentSchema = mongoose.Schema({
-    receiptNo: Number,
     date: {
         type: String,
         default: () => {
@@ -11,15 +10,14 @@ const PaymentSchema = mongoose.Schema({
     },
     client: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Client",
+        ref: "Client"
     },
     sale: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Sales",
     },
-    paymentType: String,
-    amount: Number,
-    description: String
+    paymentMode: String,
+    amount: Number
 });
 
 module.exports = mongoose.model('Payment', PaymentSchema);

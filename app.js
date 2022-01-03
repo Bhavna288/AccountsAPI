@@ -1,17 +1,17 @@
+require('dotenv/config');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv/config');
 
 const port = process.env.PORT || 1337;
 
 const app = express();
 
 // Import routes
-const itemsRoute = require('./routes/items');
-const salesRoute = require('./routes/sales');
-const clientsRoute = require('./routes/client');
-const paymentRoute = require('./routes/payment');
+const itemsRoute = require('./api/routes/items');
+const salesRoute = require('./api/routes/sales');
+const clientsRoute = require('./api/routes/client');
+const paymentRoute = require('./api/routes/payment');
 
 // Github Repository: https://github.com/Bhavna288/AccountsAPI.git
 // Kudu Repository for continuous deployment on azure: https://divyatradersaccounts.scm.azurewebsites.net:443/divyatradersaccounts.git
