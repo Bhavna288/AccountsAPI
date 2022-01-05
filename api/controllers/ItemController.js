@@ -4,7 +4,7 @@ const Item = require('../models/Item');
 const Joi = require('@hapi/joi');
 
 const schema = Joi.object({
-    title: Joi.string().min(3).required(),
+    name: Joi.string().min(3).required(),
     description: Joi.string(),
 });
 
@@ -31,11 +31,11 @@ module.exports = {
 
         if (error) return res.status(400).send(error.details[0].message);
 
-        const titleExist = await Item.findOne({ title: req.body.title });
-        console.log("titleExist");
-        if (titleExist) return res.status(400).send("item already exists.");
+        const nameExist = await Item.findOne({ name: req.body.name });
+        console.log("nameExist");
+        if (nameExist) return res.status(400).send("item already exists.");
         const item = new Item({
-            title: req.body.title,
+            name: req.body.name,
             description: req.body.description
         });
 
@@ -59,7 +59,7 @@ module.exports = {
         try {
             const updatedItem = await Item.updateOne(
                 { _id: req.params.itemId },
-                { $set: { title: req.body.title, description: req.body.description } }
+                { $set: { name: req.body.name, description: req.body.description } }
             );
             res.json(updatedItem);
         } catch (error) {
