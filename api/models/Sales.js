@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const SalesSchema = mongoose.Schema({
     receiptNo: Number,
     date: {
@@ -36,4 +37,21 @@ const SalesSchema = mongoose.Schema({
     remaining: Number
 });
 
-module.exports = mongoose.model('Sales', SalesSchema);
+SalesSchema.pre('save', function (next) {
+    if (this.isNew) {
+        var query = Sales.find();
+        query.countDocuments((err, count) => {
+            if (err)
+                console.log(err);
+            else
+                this.receiptNo = count + 1; // Increment count
+            next();
+        });
+    } else {
+        next();
+    }
+});
+
+const Sales = mongoose.model('Sales', SalesSchema);
+
+module.exports = Sales;

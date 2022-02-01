@@ -5,8 +5,7 @@ import axios from 'axios';
 
 const Clients = () => {
 
-    const [clientName, setClientName] = useState("");
-    const [clientDescription, setClientDescription] = useState("");
+    const [newClientData, setNewClientData] = useState({});
     const [clientsData, setClientsData] = useState([]);
 
     useEffect(() => {
@@ -23,11 +22,11 @@ const Clients = () => {
 
     const onClientSubmit = (e) => {
         e.preventDefault();
-        const formValues = {
-            name: clientName,
-            description: clientDescription
-        }
-        axios.post('http://localhost:1337/clients', formValues)
+        // const formValues = {
+        //     name: clientName,
+        //     description: clientDescription
+        // }
+        axios.post('http://localhost:1337/clients', newClientData)
             .then((response) => {
                 console.log(response);
             })
@@ -38,11 +37,11 @@ const Clients = () => {
             <form className='client-form' onSubmit={ onClientSubmit }>
                 <div className='form-group'>
                     <label>Client name: </label>
-                    <input className='form-control' type="text" onChange={ (e) => { setClientName(e.target.value) } } />
+                    <input className='form-control' type="text" onChange={ (e) => { setNewClientData({ ...newClientData, name: e.target.value }) } } />
                 </div>
                 <div className='form-group'>
                     <label>Client description: </label>
-                    <textarea className='form-control' type="text" onChange={ (e) => { setClientDescription(e.target.value) } } ></textarea>
+                    <textarea className='form-control' type="text" onChange={ (e) => { setNewClientData({ ...newClientData, description: e.target.value }) } } ></textarea>
                 </div>
                 <Button type="submit">Submit</Button>
             </form>
@@ -83,4 +82,4 @@ const ClientList = styled.div`
 `;
 
 
-export default Client;
+export default Clients;

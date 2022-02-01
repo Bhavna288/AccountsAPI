@@ -35,23 +35,24 @@ module.exports = {
     },
     createSale: async (req, res) => {
 
+        var tp = 0;
         req.body.items.forEach(element => {
             element["totalPrice"] = element.quantity * element.price;
+            tp += element["totalPrice"];
         });
 
         const sales = new Sales({
             client: req.body.client,
             items: req.body.items,
-            receiptNo: req.body.receiptNo,
             description: req.body.description,
-            totalPrice: req.body.totalPrice,
+            totalPrice: tp,
             date: req.body.date,
             paid: req.body.paid,
             remaining: req.body.remaining
         });
 
         var date = new Date();
-        console.log(date.toString());
+        // console.log(date.toString());
 
         try {
             const savedSale = await sales.save()

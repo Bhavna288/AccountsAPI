@@ -5,8 +5,7 @@ import axios from 'axios';
 
 const Items = () => {
 
-    const [itemName, setItemName] = useState("");
-    const [itemDescription, setItemDescription] = useState("");
+    const [newItemData, setNewItemData] = useState({});
     const [itemsData, setItemsData] = useState([]);
 
     useEffect(() => {
@@ -23,11 +22,11 @@ const Items = () => {
 
     const onItemSubmit = (e) => {
         e.preventDefault();
-        const formValues = {
-            name: itemName,
-            description: itemDescription
-        }
-        axios.post('http://localhost:1337/items', formValues)
+        // const formValues = {
+        //     name: itemName,
+        //     description: itemDescription
+        // }
+        axios.post('http://localhost:1337/items', newItemData)
             .then((response) => {
                 console.log(response);
             })
@@ -38,11 +37,11 @@ const Items = () => {
             <form className='item-form' onSubmit={ onItemSubmit }>
                 <div className='form-group'>
                     <label>Item name: </label>
-                    <input className='form-control' type="text" onChange={ (e) => { setItemName(e.target.value) } } />
+                    <input className='form-control' type="text" onChange={ (e) => { setNewItemData({ ...newItemData, name: e.target.value }) } } />
                 </div>
                 <div className='form-group'>
                     <label>Item description: </label>
-                    <textarea className='form-control' type="text" onChange={ (e) => { setItemDescription(e.target.value) } } ></textarea>
+                    <textarea className='form-control' type="text" onChange={ (e) => { setNewItemData({ ...newItemData, description: e.target.value }) } } ></textarea>
                 </div>
                 <Button type="submit">Submit</Button>
             </form>
@@ -83,4 +82,4 @@ const ItemList = styled.div`
 `;
 
 
-export default Item;
+export default Items;
