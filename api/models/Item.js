@@ -1,10 +1,16 @@
 const mongoose = require('mongoose');
 
-const ItemSchema = mongoose.Schema({
-    name: {
+const ItemMasterSchema = mongoose.Schema({
+    itemName: {
         type: String,
         required: true
     },
+    itemGroupId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ItemGroup"
+    },
+    stockKeepingUnit: String,
+    unit: String,
     description: String,
     date: {
         type: String,
@@ -12,7 +18,13 @@ const ItemSchema = mongoose.Schema({
             var date = new Date();
             return date.toISOString();
         }
-    }
+    },
+    itemType: String,
+    taxPreference: String,
+    manufacturer: String,
+    brand: String,
+    inventoryType: String,
+    currentRate: Number
 });
 
-module.exports = mongoose.model('Items', ItemSchema);
+module.exports = mongoose.model('Items', ItemMasterSchema);
