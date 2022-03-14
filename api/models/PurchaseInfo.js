@@ -1,15 +1,19 @@
 const mongoose = require('mongoose');
 
-const AccountSchema = mongoose.Schema({
-    accountName: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    accountType: {
+const PurchaseInfoSchema = mongoose.Schema({
+    itemId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'AccountGroup'
+        ref: "Item"
     },
+    costPrice: {
+        type: Number,
+        required: true
+    },
+    accountId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Account",
+    },
+    description: String,
     createdDate: {
         type: String,
         default: () => {
@@ -30,4 +34,4 @@ const AccountSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Account', AccountSchema);
+module.exports = mongoose.model('PurchaseInfo', PurchaseInfoSchema);

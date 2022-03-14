@@ -1,15 +1,28 @@
 const mongoose = require('mongoose');
 
-const AccountSchema = mongoose.Schema({
-    accountName: {
+const VendorSchema = mongoose.Schema({
+    vendorName: {
         type: String,
-        required: true,
-        unique: true,
+        required: true
     },
-    accountType: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'AccountGroup'
+    companyName: {
+        type: String,
+        required: true
     },
+    displayName: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    email: String,
+    address: {
+        type: String,
+        required: true
+    },
+    remarks: String,
     createdDate: {
         type: String,
         default: () => {
@@ -30,4 +43,4 @@ const AccountSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Account', AccountSchema);
+module.exports = mongoose.model('Vendor', VendorSchema);
