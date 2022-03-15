@@ -32,7 +32,7 @@ module.exports = {
                 account_groups = await AccountGroup.find({ status: 1 }).skip().limit();
             else
                 account_groups = await AccountGroup.find({ status: 1 }).skip(offset).limit(limit);
-            let total_count = await AccountGroup.count({ status: 1 });
+            let total_count = await AccountGroup.countDocuments({ status: 1 });
             res.status(200)
                 .json({ status: 200, data: account_groups, total: total_count });
         } catch (err) {

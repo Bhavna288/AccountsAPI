@@ -8,9 +8,14 @@ const InventoryStoreSchema = mongoose.Schema({
             return date.toISOString();
         }
     },
-    itemId: {
+    // itemId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Item"
+    // },
+    inventoryMasterId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Item"
+        ref: "Inventory",
+        unique: true
     },
     stockOnHand: {
         type: Number,
@@ -33,4 +38,4 @@ const InventoryStoreSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('InventoryStore', InventoryStoreSchema);
+module.exports = mongoose.model('InventoryStore', InventoryStoreSchema);;

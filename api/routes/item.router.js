@@ -5,14 +5,14 @@ const API = require('./../middleware/apikey');
 const itemController = require('../controllers/item.controller');
 
 // Submits or creates an item
-router.post('/add', API.validateKey, itemController.addItem);
+router.post('/add', itemController.addItem);
 // get all data
-router.get('/getall', API.validateKey, itemController.getAllItem);
+router.get('/getall', itemController.getAllItem);
 // get item by id
-router.post('/getbyid', API.validateKey, itemController.getItemById);
+router.post('/getbyid', itemController.getItemById);
 // updates an item
-router.put('/update', API.validateKey, itemController.updateItem);
+router.put('/update', itemController.updateItem);
 // delete an item
-router.delete('/delete', API.validateKey, itemController.deleteItem);
+router.delete('/delete', itemController.deleteItem);
 
 module.exports = router;

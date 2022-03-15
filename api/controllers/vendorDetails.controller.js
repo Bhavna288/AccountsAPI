@@ -40,7 +40,7 @@ module.exports = {
             else
                 vendor_details = await VendorDetails.find({ status: 1 }).skip(offset).limit(limit)
                     .populate("vendorId");
-            let total_count = await VendorDetails.count({ status: 1 });
+            let total_count = await VendorDetails.countDocuments({ status: 1 });
             res.status(200)
                 .json({ status: 200, data: vendor_details, total: total_count });
         } catch (err) {

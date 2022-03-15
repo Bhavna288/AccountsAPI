@@ -5,14 +5,14 @@ const API = require('./../middleware/apikey');
 const accountController = require('../controllers/account.controller');
 
 // Submits or creates an account 
-router.post('/add', API.validateKey, accountController.addAccount);
+router.post('/add', accountController.addAccount);
 // get all data
-router.get('/getall', API.validateKey, accountController.getAllAccount);
+router.get('/getall', accountController.getAllAccount);
 // get account  by id
-router.post('/getbyid', API.validateKey, accountController.getAccountById);
+router.post('/getbyid', accountController.getAccountById);
 // updates an account 
-router.put('/update', API.validateKey, accountController.updateAccount);
+router.put('/update', accountController.updateAccount);
 // delete an account 
-router.delete('/delete', API.validateKey, accountController.deleteAccount);
+router.delete('/delete', accountController.deleteAccount);
 
 module.exports = router;

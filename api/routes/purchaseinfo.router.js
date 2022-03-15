@@ -5,14 +5,14 @@ const API = require('./../middleware/apikey');
 const purchaseInfoController = require('../controllers/purchaseInfo.controller');
 
 // Submits or creates a purchaseInfo 
-router.post('/add', API.validateKey, purchaseInfoController.addPurchaseInfo);
+router.post('/add', purchaseInfoController.addPurchaseInfo);
 // get all data
-router.get('/getall', API.validateKey, purchaseInfoController.getAllPurchaseInfo);
+router.get('/getall', purchaseInfoController.getAllPurchaseInfo);
 // get purchaseInfo  by id
-router.post('/getbyid', API.validateKey, purchaseInfoController.getPurchaseInfoById);
+router.post('/getbyid', purchaseInfoController.getPurchaseInfoById);
 // updates a purchaseInfo 
-router.put('/update', API.validateKey, purchaseInfoController.updatePurchaseInfo);
+router.put('/update', purchaseInfoController.updatePurchaseInfo);
 // delete a purchaseInfo 
-router.delete('/delete', API.validateKey, purchaseInfoController.deletePurchaseInfo);
+router.delete('/delete', purchaseInfoController.deletePurchaseInfo);
 
 module.exports = router;

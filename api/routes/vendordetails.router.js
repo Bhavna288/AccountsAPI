@@ -5,14 +5,14 @@ const API = require('./../middleware/apikey');
 const vendorDetailsController = require('../controllers/vendorDetails.controller');
 
 // Submits or creates an vendor details
-router.post('/add', API.validateKey, vendorDetailsController.addVendorDetails);
+router.post('/add', vendorDetailsController.addVendorDetails);
 // get all data
-router.get('/getall', API.validateKey, vendorDetailsController.getAllVendorDetails);
+router.get('/getall', vendorDetailsController.getAllVendorDetails);
 // get vendor details by id
-router.post('/getbyid', API.validateKey, vendorDetailsController.getVendorDetailsById);
+router.post('/getbyid', vendorDetailsController.getVendorDetailsById);
 // updates an vendor details
-router.put('/update', API.validateKey, vendorDetailsController.updateVendorDetails);
+router.put('/update', vendorDetailsController.updateVendorDetails);
 // delete an vendor details
-router.delete('/delete', API.validateKey, vendorDetailsController.deleteVendorDetails);
+router.delete('/delete', vendorDetailsController.deleteVendorDetails);
 
 module.exports = router;

@@ -41,7 +41,7 @@ module.exports = {
                     .populate("itemId")
                     .populate("accountId");
 
-            let total_count = await PurchaseInfo.count({ status: 1 });
+            let total_count = await PurchaseInfo.countDocuments({ status: 1 });
             res.status(200)
                 .json({ status: 200, data: purchase_info, total: total_count });
         } catch (err) {

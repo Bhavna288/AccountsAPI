@@ -5,14 +5,14 @@ const API = require('./../middleware/apikey');
 const itemGroupController = require('../controllers/itemGroup.controller');
 
 // Submits or creates an item group
-router.post('/add', API.validateKey, itemGroupController.addItemGroup);
+router.post('/add', itemGroupController.addItemGroup);
 // get all data
-router.get('/getall', API.validateKey, itemGroupController.getAllItemGroup);
+router.get('/getall', itemGroupController.getAllItemGroup);
 // get item group by id
-router.post('/getbyid', API.validateKey, itemGroupController.getItemGroupById);
+router.post('/getbyid', itemGroupController.getItemGroupById);
 // updates an item group
-router.put('/update', API.validateKey, itemGroupController.updateItemGroup);
+router.put('/update', itemGroupController.updateItemGroup);
 // delete an item group
-router.delete('/delete', API.validateKey, itemGroupController.deleteItemGroup);
+router.delete('/delete', itemGroupController.deleteItemGroup);
 
 module.exports = router;

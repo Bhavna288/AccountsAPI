@@ -55,7 +55,7 @@ module.exports = {
             else
                 items = await Item.find({ status: 1 }).skip(offset).limit(limit)
                     .populate("itemGroupId");
-            let total_count = await Item.count({ status: 1 });
+            let total_count = await Item.countDocuments({ status: 1 });
             res.status(200)
                 .json({ status: 200, data: items, total: total_count });
         } catch (err) {

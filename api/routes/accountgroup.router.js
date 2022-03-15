@@ -5,14 +5,14 @@ const API = require('./../middleware/apikey');
 const accountGroupController = require('../controllers/accountGroup.controller');
 
 // Submits or creates an account group
-router.post('/add', API.validateKey, accountGroupController.addAccountGroup);
+router.post('/add', accountGroupController.addAccountGroup);
 // get all data
-router.get('/getall', API.validateKey, accountGroupController.getAllAccountGroup);
+router.get('/getall', accountGroupController.getAllAccountGroup);
 // get account group by id
-router.post('/getbyid', API.validateKey, accountGroupController.getAccountGroupById);
+router.post('/getbyid', accountGroupController.getAccountGroupById);
 // updates an account group
-router.put('/update', API.validateKey, accountGroupController.updateAccountGroup);
+router.put('/update', accountGroupController.updateAccountGroup);
 // delete an account group
-router.delete('/delete', API.validateKey, accountGroupController.deleteAccountGroup);
+router.delete('/delete', accountGroupController.deleteAccountGroup);
 
 module.exports = router;

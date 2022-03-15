@@ -34,7 +34,7 @@ module.exports = {
             else
                 accounts = await Account.find({ status: 1 }).skip(offset).limit(limit)
                     .populate("accountType");
-            let total_count = await Account.count({ status: 1 });
+            let total_count = await Account.countDocuments({ status: 1 });
             res.status(200)
                 .json({ status: 200, data: accounts, total: total_count });
         } catch (err) {
@@ -48,14 +48,14 @@ module.exports = {
     getAccountById: async (req, res, next) => {
         try {
             let { id } = req.body;
-            let account_group = await Account.findOne({ _id: id, status: 1 })
+            let account = await Account.findOne({ _id: id, status: 1 })
                 .populate("accountType");
-            if (account_group)
+            if (account)
                 res.status(200)
-                    .json({ status: 200, data: account_group });
+                    .json({ status: 200, data: account });
             else
                 res.status(200)
-                    .json({ status: 200, message: noRecord("Account"), data: account_group });
+                    .json({ status: 200, message: noRecord("Account"), data: account });
         } catch (err) {
             if (!err.statusCode) {
                 res.status(401)

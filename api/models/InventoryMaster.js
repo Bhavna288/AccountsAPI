@@ -26,6 +26,7 @@ const InventorySchema = mongoose.Schema({
         required: true
     },
     reorderPoint: String,
+    remarks: String,
     vendorId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Vendor"
