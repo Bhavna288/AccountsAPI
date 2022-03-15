@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const API = require('./../middleware/apikey');
-// const bcrypt = require('bcryptjs');
+
 const itemGroupController = require('../controllers/itemGroup.controller');
 
 // Submits or creates an item group

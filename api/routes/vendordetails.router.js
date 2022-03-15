@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const API = require('./../middleware/apikey');
-// const bcrypt = require('bcryptjs');
+
 const vendorDetailsController = require('../controllers/vendorDetails.controller');
 
 // Submits or creates an vendor details

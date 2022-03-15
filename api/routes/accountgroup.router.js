@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const API = require('./../middleware/apikey');
-// const bcrypt = require('bcryptjs');
+
 const accountGroupController = require('../controllers/accountGroup.controller');
 
 // Submits or creates an account group
