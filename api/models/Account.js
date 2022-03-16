@@ -4,7 +4,6 @@ const AccountSchema = mongoose.Schema({
     accountName: {
         type: String,
         required: true,
-        unique: true,
     },
     accountType: {
         type: mongoose.Schema.Types.ObjectId,
