@@ -1,4 +1,4 @@
-const today = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Kolkata' }).replace(/\//g, "-");
+var today = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Kolkata' }).replace(/\//g, "-");
 today = today.replace(',', "");
 const prefix = today + " divya-traders-api: ";
 
