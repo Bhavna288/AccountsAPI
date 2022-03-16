@@ -2,5 +2,7 @@
     "appService.zipIgnorePattern": [
         "node_modules{,/**}",
         ".vscode{,/**}"
-    ]
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/59674e28-3af6-4d0c-982f-90f16cb6542c/resourceGroups/divya-traders-group/providers/Microsoft.Web/sites/divya-traders-api",
+    "appService.deploySubpath": "."
 }
