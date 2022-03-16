@@ -2,7 +2,6 @@ const today = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Kolkata' }).r
 today = today.replace(',', "");
 const prefix = today + " divya-traders-api: ";
 
-
 module.exports = {
     addMessage: (module) => {
         console.log(prefix, module, " added");

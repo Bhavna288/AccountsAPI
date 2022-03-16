@@ -1,0 +1,2 @@
+command for connecting the local git repository for deployment: 
+=>az webapp deployment source config-local-git --name <app-name> --resource-group <group-name>
