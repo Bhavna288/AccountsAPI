@@ -81,6 +81,7 @@ module.exports = {
                     updatedDate: new Date().toISOString()
                 }
             );
+            console.log(updated_account);
             res.status(200)
                 .json({ status: 200, message: updateMessage("Account"), data: updated_account });
         } catch (err) {

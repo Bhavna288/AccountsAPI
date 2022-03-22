@@ -6,10 +6,10 @@ const ItemGroupSchema = mongoose.Schema({
         required: true,
     },
     description: String,
-    unit: {
+    unit: [{
         type: String,
         required: true
-    },
+    }],
     manufacturer: String,
     brand: String,
     salesAccount: {
