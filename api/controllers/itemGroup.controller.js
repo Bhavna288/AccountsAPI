@@ -42,9 +42,15 @@ module.exports = {
             let offset = (page - 1) * limit;
             let item_groups = [];
             if (limit == "" && page == "")
-                item_groups = await ItemGroup.find({ status: 1 }).skip().limit();
+                item_groups = await ItemGroup.find({ status: 1 }).skip().limit()
+                    .populate('salesAccount')
+                    .populate('purchaseAccount')
+                    .populate('inventoryAccount');
             else
-                item_groups = await ItemGroup.find({ status: 1 }).skip(offset).limit(limit);
+                item_groups = await ItemGroup.find({ status: 1 }).skip(offset).limit(limit)
+                    .populate('salesAccount')
+                    .populate('purchaseAccount')
+                    .populate('inventoryAccount');
             let total_count = await ItemGroup.countDocuments({ status: 1 });
             res.status(200)
                 .json({ status: 200, data: item_groups, total: total_count });
@@ -59,7 +65,10 @@ module.exports = {
     getItemGroupById: async (req, res, next) => {
         try {
             let { id } = req.body;
-            let item_group = await ItemGroup.findOne({ _id: id, status: 1 });
+            let item_group = await ItemGroup.findOne({ _id: id, status: 1 })
+                .populate('salesAccount')
+                .populate('purchaseAccount')
+                .populate('inventoryAccount');
             if (item_group)
                 res.status(200)
                     .json({ status: 200, data: item_group });
