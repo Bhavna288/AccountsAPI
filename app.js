@@ -8,7 +8,6 @@ const port = process.env.PORT || 1337;
 const app = express();
 
 // Github Repository: https://github.com/Bhavna288/AccountsAPI.git
-// Kudu Repository for continuous deployment on azure: https://divyatradersaccounts.scm.azurewebsites.net:443/divyatradersaccounts.git
 
 // Middlewares
 app.use(cors());
